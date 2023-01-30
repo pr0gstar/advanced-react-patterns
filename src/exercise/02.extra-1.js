@@ -4,11 +4,11 @@
 import * as React from 'react'
 import {Switch} from '../switch'
 
-function Toggle(props) {
+function Toggle({children}) {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
 
-  return React.Children.map(props.children, child => {
+  return React.Children.map(children, child => {
     return allowedTypes.includes(child.type)
       ? React.cloneElement(child, {on, toggle})
       : child

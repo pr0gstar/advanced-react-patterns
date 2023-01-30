@@ -19,7 +19,12 @@ function Toggle({children}) {
 }
 
 function useToggle() {
-  return React.useContext(ToggleContext)
+  const context = React.useContext(ToggleContext)
+  if (context === undefined) {
+    throw new Error('useToggle must be used within a <Toggle />')
+  }
+
+  return context
 }
 
 function ToggleOn({children}) {
@@ -50,5 +55,8 @@ function App() {
     </div>
   )
 }
+
+// Use this App() instead of the above to throw Error in Console
+//const App = () => <ToggleButton />
 
 export default App
